@@ -12,7 +12,10 @@ fi
 ############### Fedora packages
 sudo dnf install -y gmake zlib xz python3-devel gcc14* cmake git python$pyver 
 sudo rpm -e --nodeps gcc  ## For a lot of projects around ROCm at the moment this simply existing on the system is a nogo.
-
+ln -s /usr/bin/gcc-14 /usr/bin/gcc
+ln -s /usr/bin/gcc-14 /usr/bin/cc
+ln -s /usr/bin/g++-14 /usr/bin/g++
+ln -s /usr/bin/g++-14 /usr/bin/c++
 ############### Keep it readable
 thisdir="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 scriptdir="$thisdir/scripts"
