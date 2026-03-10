@@ -42,6 +42,7 @@ set_rocm_env() {
     export USE_CK_FLASH_ATTENTION=0
     export CMAKE_POLICY_VERSION_MINIMUM=3.5
 
+    export CMAKE_INSTALL_PREFIX=$ROCM_PATH
 }
 
 

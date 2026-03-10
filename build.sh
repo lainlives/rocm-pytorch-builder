@@ -46,6 +46,8 @@ get_torch "$torchrelease" "$buildroot"
 cd pytorch || exit 1
 python tools/amd_build/build_amd.py
 cd "$buildroot" || exit 1
+source "$scriptdir/config.sh"
+source "$scriptdir/env.sh"
 
 
 ############### Build Zen CPU compute libs
@@ -55,12 +57,11 @@ cd "$buildroot" || exit 1
 # By default they will be skipped if they fail to build
 get_blis "$buildroot" "$prefix" zen2 || true
 get_zendnn "$buildroot" "$prefix" || true
+get_magma "$buildroot" "$prefix" || true
 
 
 ############### Build
 
-source "$scriptdir/config.sh"
-source "$scriptdir/env.sh"
 set_rocm_env "$rocmdir"
 validate_rocm_env
 
