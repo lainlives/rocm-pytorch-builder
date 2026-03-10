@@ -24,7 +24,7 @@ get_magma() {
     git clone https://github.com/icl-utk-edu/magma.git --jobs 5
     cd magma || exit 1
     git submodule update --init --recursive --jobs 5
-    mkdir build
+    mkdir -p build
     cd build || exit 1
     cmake ..
     cmake --build . --parallel 32
