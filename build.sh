@@ -10,7 +10,7 @@ if [ -z "$1" ]; then
     pyver=$(python3 --version | cut -d ' ' -f 2 | cut -d '.' -f 1,2)
 fi
 ############### Fedora packages
-sudo dnf install -y gmake zlib xz python3-devel gcc-14 cmake git python$pyver 
+sudo dnf install -y gmake zlib xz python3-devel gcc14* cmake git python$pyver 
 sudo rpm -e --nodeps gcc  ## For a lot of projects around ROCm at the moment this simply existing on the system is a nogo.
 
 ############### Keep it readable
