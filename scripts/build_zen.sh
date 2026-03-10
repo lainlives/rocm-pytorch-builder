@@ -3,7 +3,7 @@ get_blis() {
     git clone https://github.com/amd/blis.git  --jobs 24
     cd blis || exit 1
     git submodule update --init --recursive --jobs 24
-    ./configure "$3"  --prefix="$2"
+    bash configure "$3"  --prefix="$2"
     make -j32
     sudo make install
     cd "$1" || exit 1
