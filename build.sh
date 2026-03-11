@@ -25,8 +25,8 @@ source "$scriptdir/build_zen.sh"  || source ./scripts/build_zen.sh
 source "$scriptdir/config.sh"  || source ./scripts/config.sh
 echo "$buildroot"
 
-mkdir -p "$buildroot" || exit 1
-mkdir -p "$wheeldir" || exit 1
+mkdir -p "$buildroot"
+mkdir -p "$wheeldir"
 cd "$buildroot" || exit 1
 mkdir -p "$rocmdir" || true
 
@@ -37,14 +37,14 @@ activatevenv "$pyver" "$buildroot"
 
 
 ############### Get ROCM and PyTorch then hipify and patch for gfx1010 build
-# get_known_working_rocm "$rocmdir"
-# # get_latest_nightly_rocm "$rocmdir"
-# get_pyzendnn "$buildroot" # Stuff for zendnn, AMD CPU stuff you can skip it
-# get_torchaudio "$torchrelease" "$buildroot"
-# get_torchvision "$visionrelease" "$buildroot"
-# get_torch "$torchrelease" "$buildroot"
-# cd pytorch || exit 1
-# python tools/amd_build/build_amd.py
+get_known_working_rocm "$rocmdir"
+# get_latest_nightly_rocm "$rocmdir"
+get_pyzendnn "$buildroot" # Stuff for zendnn, AMD CPU stuff you can skip it
+get_torchaudio "$torchrelease" "$buildroot"
+get_torchvision "$visionrelease" "$buildroot"
+get_torch "$torchrelease" "$buildroot"
+cd pytorch || exit 1
+python tools/amd_build/build_amd.py
 cd "$buildroot" || exit 1
 source "$scriptdir/config.sh"
 source "$scriptdir/env.sh"
@@ -58,10 +58,10 @@ source "$scriptdir/env.sh"
 get_blis "$buildroot" "$prefix" zen2 || true
 get_zendnn "$buildroot" "$prefix" || true
 get_magma "$buildroot" "$prefix" || true
-
+# 
 
 ############### Build
-
+unset CMAKE_INSTALL_PREFIX
 set_rocm_env "$rocmdir"
 validate_rocm_env
 

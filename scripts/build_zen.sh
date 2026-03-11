@@ -14,7 +14,7 @@ get_zendnn() {
     git clone https://github.com/amd/ZenDNN.git --jobs 24
     cd ZenDNN || exit 1
     git submodule update --init --recursive --jobs 24
-    cmake .
+    CMAKE_INSTALL_PREFIX=$ROCM_PATH cmake .
     cmake --build . --parallel 32
     cmake --install . --prefix "$2"
     cd "$1" || exit 1
@@ -26,7 +26,7 @@ get_magma() {
     git submodule update --init --recursive --jobs 5
     mkdir -p build
     cd build || exit 1
-    cmake ..
+    CMAKE_INSTALL_PREFIX=$ROCM_PATH cmake ..
     cmake --build . --parallel 32
     cmake --install . --prefix "$2"
     cd "$1" || exit 1
